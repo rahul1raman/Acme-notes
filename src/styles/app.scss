@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/bootstrap";
+@import "spinner";
+@import "utils";
+@import "rtl";
+@import "responsive";
+
+body {
+    background-color: #f2f2f2;
+}
+
+.card {
+    border: 1px solid rgba(152, 152, 152, 0.32);
+    .card-body {
+            .card-title, .card-text, input {
+                outline: none;
+                border: none;
+            }
+
+            a {
+                color: #fff;
+                text-decoration: none;   
+            }
+
+            
+            p:empty:not(:focus)::before {
+                content: attr(data-placeholder);
+              }
+
+           .card-title {
+               p {
+                   display: inline;
+                   font-size: 13px;
+                   color: #707372;
+               }
+           }
+
+           .card-text {
+                  width: 100%;
+              }
+
+    }
+
+}

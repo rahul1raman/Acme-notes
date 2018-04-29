@@ -1,0 +1,66 @@
+<app-header></app-header>
+<br><br><br><br>
+<div class="container-fluid">
+  <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <h5 class="text-center">Select the type of note to add</h5>
+          <ul class="text-center">
+            <li><a [routerLink]="[{ outlets: { new: ['add'] } }]"><i class="fa fa-text-width" aria-hidden="true"></i></a></li>
+            <li><a [routerLink]="[{ outlets: { new: ['article'] } }]"><i class="fa fa-align-left" aria-hidden="true"></i></a></li>
+            <li><a [routerLink]="[{ outlets: { new: ['picture'] } }]"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
+            <li><a [routerLink]="[{ outlets: { new: ['document'] } }]"><i class="fa fa-file-text" aria-hidden="true"></i></a></li>
+          </ul>
+          <!-- article input -->
+            <!-- <div class="card">
+              <div class="card-body">
+                <p class="pull-right" (click)="onAdd(itemTitle.value, content.value)"><i class="fa fa-plus-circle"></i></p>
+                <input #itemTitle class="card-title" role="textbox" placeholder="Title" /> 
+                <br>
+                <textarea *ngIf="articleClicked" #content class="card-text" role="textbox" placeholder="Add description"></textarea>
+                <button type="file">Browse</button> 
+              </div>
+            </div> -->
+                <router-outlet name="new"></router-outlet>
+        </div>
+        <div class="col"></div>
+  </div>
+  
+  <div class="pull-right">
+    <span><a (click)="displayMode = 2"><i class="fa fa-th-list" aria-hidden="true"></i></a></span>
+    <span><a (click)="displayMode = 1"><i class="fa fa-th" aria-hidden="true"></i></a></span>
+  </div>
+  <br>
+  <!-- saved cards -->
+  <div class="row" *ngIf="displayMode == 1">
+      <div class="col-sm-3" *ngFor="let item of notesArray">
+        <div class="card">
+          <img *ngIf="item.picture" class="card-img-top" [src]="item.picture" alt="Note image">
+          <div class="card-body">
+            <h5 class="card-title">{{item.title}} | <p class="note-type">{{item.type}}</p> 
+              <p class="document-type" *ngIf="item.doc_type">({{item.doc_type}})</p></h5>
+            <p *ngIf="item.content" class="card-text">{{item.content}}</p>
+            <a *ngIf="item.file" [attr.href]="item.file" class="document-link" target="_blank">See attachment</a>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="row list" *ngIf="displayMode == 2">
+    <div class="row">
+        <div class="col-12" *ngFor="let item of notesArray">
+            <div class="media">
+              <div class="media-left" *ngIf="item.picture">
+                  <img class="media-object" [src]="item.picture" alt="...">
+              </div>
+              <div class="media-body">
+                  <h5 class="card-title">{{item.title}} | <p class="note-type">{{item.type}}</p> 
+                    <p class="document-type" *ngIf="item.doc_type">({{item.doc_type}})</p></h5>
+                  <p *ngIf="item.content" class="card-text">{{item.content}}</p>
+                  <a *ngIf="item.file" [attr.href]="item.file" class="document-link" target="_blank">See attachment</a>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
